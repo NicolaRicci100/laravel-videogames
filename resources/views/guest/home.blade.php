@@ -1,20 +1,29 @@
 @extends('layouts.app')
 @section('content')
     <div class="card text-bg-dark rounded-0">
-        <img src="https://media.licdn.com/dms/image/C5612AQGWUQAdD0GlOA/article-cover_image-shrink_600_2000/0/1520186265433?e=2147483647&v=beta&t=ztS_uK1gZlL4H18YRcld9tQMqEVx16YJSF80VG9DhDI"
-            class="card-img img-fluid rounded-0" alt="videogame jumbotron">
-        <div class="card-img-overlay d-flex align-items-center justify-content-center">
-            <div class="card text-center" style="max-width: 500px;">
-                <div class="card-header">
-                    Welcome Stranger
+
+
+        <div class="jumbotron p-5 mb-4 rounded-3">
+            <h1>Our video games</h1>
+            @forelse ($videogames as $videogame)
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $videogame->title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"> <strong>Genre: </strong>{{ $videogame->genre }}</h6>
+                        <div class="clearfix">
+                            <img class="float-start me-2" src="{{ $videogame->cover }}" alt="{{ $videogame->title }}">
+                            <p class="card-text">{{ $videogame->description }}</p>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <p><strong>Platform: </strong>{{ $videogame->platform }}</p>
+                            <p class="mx-4"><strong>Vote: </strong>{{ $videogame->vote }}</p>
+                            <p><strong>Min age: </strong>{{ $videogame->age_rating }}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Welcome to my generic videogame site!</h5>
-                    <img class="card-img img-fluid p-4"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Video-Game-Controller-Icon-D-Edit.svg/1200px-Video-Game-Controller-Icon-D-Edit.svg.png"
-                        alt="joystic image">
-                </div>
-            </div>
+            @empty
+                <h3 class="text-center">There are no games</h3>
+            @endforelse
         </div>
     </div>
 @endsection
