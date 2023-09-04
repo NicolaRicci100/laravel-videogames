@@ -21,7 +21,7 @@ class VideogameController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.videogames.create');
     }
 
     /**
@@ -29,7 +29,12 @@ class VideogameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $videogame = new Videogame();
+        $videogame->fill($data);
+        $videogame->save();
+
+        return to_route('admin.videogames.show', $videogame);
     }
 
     /**
