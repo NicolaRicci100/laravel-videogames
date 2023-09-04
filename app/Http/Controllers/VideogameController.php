@@ -56,6 +56,27 @@ class VideogameController extends Controller
         //
     }
 
+    // trash
+
+    public function trash()
+    {
+        $videogames = Videogame::onlyTrashed()->get();
+        return view('admin.videogames.trash', compact('videogames'));
+    }
+
+    public function dropAll()
+    {
+        Videogame::onlyTrashed()->forceDelete();
+        return to_route('admin.videogames.trash')->with('alert-message', "All videogames in the trash deleted successfully")->with('alert-type', 'success');
+    }
+
+    public function drop(string $id)
+    {
+        $videogame = Videogame::onlyTrashed()->findOrFail($id);
+        $videogame->forceDelete();
+        return to_route('admin.videogames.trash')->with('alert-message', "Videogame '$videogame->title' deleted successfully")->with('alert-type', 'success');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
