@@ -12,7 +12,8 @@ class VideogameController extends Controller
      */
     public function index()
     {
-        //
+        $videogames = Videogame::orderBy('updated_at', 'DESC')->get();
+        return view('admin.videogames.index', compact('videogames'));
     }
 
     /**

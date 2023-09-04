@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VideogameController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ Route::get('/', [GuestHomeController::class, 'index'])->name('guest.home');
 Route::prefix('/admin')->name('admin.')->middleware(['auth'])->group(function () {
     // home
     Route::get('/', [AdminHomeController::class, 'index'])->name('home');
+    Route::resource('/videogames', VideogameController::class);
 });
 
 Route::middleware('auth')->group(function () {
