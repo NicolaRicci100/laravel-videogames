@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        <div class="buttons d-flex justify-content-end">
+            <a href="{{ route('admin.videogames.dropAll') }}" class="btn btn-danger my-4 text-end">Delete all</a>
+        </div>
         <table id="projects-table" class="table table-dark table-striped">
             <thead>
                 <tr>
@@ -27,11 +30,13 @@
                         <td>{{ $videogame->created_at }}</td>
                         <td>{{ $videogame->updated_at }}</td>
                         <td class="vert">
-                            <a href="{{ route('admin.videogames.show', $videogame) }}" class="btn btn-secondary"><i
-                                    class="bi bi-eye"></i></a>
-                            <a href="{{ route('admin.videogames.edit', $videogame) }}" class="btn btn-primary"><i
-                                    class="bi bi-pen"></i></a>
-                            <form class="d-inline" action="{{ route('admin.videogames.destroy', $videogame) }}"
+                            <form class="d-inline" action="{{ route('admin.videogames.restore', $videogame) }}"
+                                method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-success"><i class="bi bi-recycle"></i></button>
+                            </form>
+                            <form class="d-inline" action="{{ route('admin.videogames.drop', $videogame) }}"
                                 method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -41,12 +46,15 @@
                     </tr>
                 @empty
                     <tr>
-                        <td class="text-center" style="width: 15%;">
-                            <h2>Nothing to see here..</h2>
+                        <td class="text-center w-100" colspan="10" style="width: 15%;">
+                            <h2>Trash is empty</h2>
                         </td>
                     </tr>
                 @endempty
         </tbody>
     </table>
+    <div class="buttons d-flex justify-content-center">
+        <a href="{{ route('admin.videogames.index') }}" class="btn btn-secondary my-4 text-end">Go back</a>
+    </div>
 </div>
 @endsection
