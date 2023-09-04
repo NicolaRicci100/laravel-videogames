@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        @include('includes.alert')
         <div class="my-4 d-flex justify-content-end">
             <form class="d-inline delete-form delete-form" action="{{ route('admin.videogames.dropAll') }}" method="POST">
                 @csrf
