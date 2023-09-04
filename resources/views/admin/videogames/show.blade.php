@@ -1,34 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="my-4">
+    <div class="card-header  my-5 ">
         <h3>{{ $videogame->title }}</h3>
+        <hr>
     </div>
 
-
-    <div class="">
-        <div class="card-top ">
-            <div class="row">
-                <div class="col-4">
-                    <img src="{{ $videogame->cover }}" alt="">
-                </div>
-            </div>
-
-
-
-        </div>
+    <div class="card-body">
         <div class="row">
-            <div class="col-8">
-
-                <p class="">{{ $videogame->genre }}</p>
+            <div class="col-2">
+                <img src="{{ $videogame->cover }}" alt="" class="">
             </div>
-            <div class="col-8">
-                <h4 class="">{{ $videogame->release_date }}</h4>
-                <p class="">{{ $videogame->price }}</p>
-                <h4 class="">{{ $videogame->platform }}</h4>
-                <h4 class="">{{ $videogame->age_rating }}</h4>
-                <h4 class="">{{ $videogame->vote }}</h4>
-                <p class="">{{ $videogame->description }}</p>
+            <div class="col-10 ">
+
+                <h4>Date: <span class="text-primary">{{ $videogame->release_date }}</span></h4>
+                <h4>Platform: <span class="text-primary">{{ $videogame->platform }}</span></h4>
+                <h4>Age Rating: <span class="text-primary">{{ $videogame->age_rating }}</span></h4>
+                <h4>Vote: <span class="text-primary">{{ $videogame->vote }}</span></h4>
+                <h4>Gender: <span class="text-primary">{{ $videogame->genre }}</span></h4>
+                <h4>Price: <span class="text-primary">{{ $videogame->price }}</span></h4>
+                <h4>Description:</h4>
+                <p class="col-7 text-primary">{{ $videogame->description }}</p>
 
             </div>
         </div>
