@@ -1,8 +1,12 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="buttons d-flex justify-content-end">
-            <a href="{{ route('admin.videogames.trash') }}" class="btn btn-secondary my-4 text-end">Go to the trash</a>
+        <div class="my-4 d-flex justify-content-end">
+            <form class="d-inline delete-form delete-form" action="{{ route('admin.videogames.dropAll') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger"><i class="me-1 bi bi-x-lg"></i>Delete All</button>
+            </form>
         </div>
         <table id="projects-table" class="table table-dark table-striped">
             <thead>
@@ -30,11 +34,13 @@
                         <td>{{ $videogame->created_at }}</td>
                         <td>{{ $videogame->updated_at }}</td>
                         <td class="vert">
-                            <a href="{{ route('admin.videogames.show', $videogame) }}" class="btn btn-secondary"><i
-                                    class="bi bi-eye"></i></a>
-                            <a href="{{ route('admin.videogames.edit', $videogame) }}" class="btn btn-primary"><i
-                                    class="bi bi-pen"></i></a>
-                            <form class="d-inline delete-form" action="{{ route('admin.videogames.destroy', $videogame) }}"
+                            <form class="d-inline" action="{{ route('admin.videogames.restore', $videogame) }}"
+                                method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-success"><i class="bi bi-recycle"></i></button>
+                            </form>
+                            <form class="d-inline delete-form" action="{{ route('admin.videogames.drop', $videogame) }}"
                                 method="POST" data-name="{{ $videogame->title }}">
                                 @csrf
                                 @method('DELETE')
@@ -44,13 +50,16 @@
                     </tr>
                 @empty
                     <tr>
-                        <td class="text-center" style="width: 15%;">
-                            <h2>Nothing to see here..</h2>
+                        <td class="text-center w-100" colspan="10" style="width: 15%;">
+                            <h2>Trash is empty</h2>
                         </td>
                     </tr>
                 @endempty
         </tbody>
     </table>
+    <div class="buttons d-flex justify-content-center">
+        <a href="{{ route('admin.videogames.index') }}" class="btn btn-secondary my-4 text-end">Go back</a>
+    </div>
 </div>
 @endsection
 
