@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        <div class="buttons d-flex justify-content-end">
+            <a href="{{ route('admin.videogames.trash') }}" class="btn btn-secondary my-4 text-end">Go to the trash</a>
+        </div>
         <table id="projects-table" class="table table-dark table-striped">
             <thead>
                 <tr>
