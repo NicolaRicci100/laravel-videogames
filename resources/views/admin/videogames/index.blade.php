@@ -34,8 +34,8 @@
                                     class="bi bi-eye"></i></a>
                             <a href="{{ route('admin.videogames.edit', $videogame) }}" class="btn btn-primary"><i
                                     class="bi bi-pen"></i></a>
-                            <form class="d-inline" action="{{ route('admin.videogames.destroy', $videogame) }}"
-                                method="POST">
+                            <form class="d-inline delete-form" action="{{ route('admin.videogames.destroy', $videogame) }}"
+                                method="POST" data-name="{{ $videogame->title }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
@@ -52,4 +52,8 @@
         </tbody>
     </table>
 </div>
+@endsection
+
+@section('scripts')
+@vite('resources/js/delete-confirm.js');
 @endsection
