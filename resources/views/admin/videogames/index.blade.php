@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        @include('includes.alert')
         <div class="buttons d-flex justify-content-end">
             <a href="{{ route('admin.videogames.trash') }}" class="btn btn-secondary my-4 text-end">Go to the trash</a>
         </div>
