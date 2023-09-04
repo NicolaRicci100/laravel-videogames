@@ -20,10 +20,22 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [GuestHomeController::class, 'index'])->name('guest.home');
 
 Route::prefix('/admin')->name('admin.')->middleware(['auth'])->group(function () {
+
     // home
     Route::get('/', [AdminHomeController::class, 'index'])->name('home');
+
+    // trash
+    Route::get('/videogames/trash', [VideogameController::class, 'trash'])->name('videogames.trash');
+    Route::delete('/videogames/trash/{team}/drop', [VideogameController::class, 'drop'])->name('videogames.drop');
+    Route::delete('/videogames/trash/drop', [VideogameController::class, 'dropAll'])->name('videogames.dropAll');
+    Route::patch('/videogames/{team}/restore', [VideogameController::class, 'restore'])->name('videogames.restore');
+
     Route::resource('/videogames', VideogameController::class);
 });
+
+
+//Mostro dettaglio di un videogame
+Route::get('/videogames/{videogames}', [VideogameController::class, 'show'])->name('videogames.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

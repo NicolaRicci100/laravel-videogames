@@ -23,6 +23,7 @@ return new class extends Migration
             $table->tinyInteger('age_rating')->nullable();
             $table->tinyInteger('vote')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
