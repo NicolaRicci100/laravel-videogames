@@ -25,6 +25,10 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth'])->group(function ()
     Route::resource('/videogames', VideogameController::class);
 });
 
+
+//Mostro dettaglio di un videogame
+Route::get('/videogames/{videogames}', [VideogameController::class, 'show'])->name('videogames.show');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
