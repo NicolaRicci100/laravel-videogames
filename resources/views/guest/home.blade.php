@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <div class="card text-bg-dark">
+    <div class="card text-bg-dark rounded-0">
         <img src="https://media.licdn.com/dms/image/C5612AQGWUQAdD0GlOA/article-cover_image-shrink_600_2000/0/1520186265433?e=2147483647&v=beta&t=ztS_uK1gZlL4H18YRcld9tQMqEVx16YJSF80VG9DhDI"
-            class="card-img img-fluid" alt="videogame jumbotron">
+            class="card-img img-fluid rounded-0" alt="videogame jumbotron">
         <div class="card-img-overlay d-flex align-items-center justify-content-center">
             <div class="card text-center" style="max-width: 500px;">
                 <div class="card-header">
