@@ -50,7 +50,7 @@ class VideogameController extends Controller
      */
     public function edit(Videogame $videogame)
     {
-        //
+        return view('admin.videogames.edit', compact('videogame'));
     }
 
     /**
@@ -58,7 +58,11 @@ class VideogameController extends Controller
      */
     public function update(Request $request, Videogame $videogame)
     {
-        //
+        $data = $request->all();
+
+        $videogame->update($data);
+
+        return redirect()->route('admin.videogames.show', $videogame->id);
     }
 
     // trash
