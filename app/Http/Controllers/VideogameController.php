@@ -82,6 +82,16 @@ class VideogameController extends Controller
      */
     public function destroy(Videogame $videogame)
     {
-        //
+        $videogame->delete();
+        return to_route('admin.videogames.index')->with('alert-message', "Videogame '$videogame->title' moved to trash successfully")->with('alert-type', 'success');
+    }
+
+    public function restore(string $id)
+    {
+        $videogame = Videogame::onlyTrashed()->findOrFail($id);
+
+        $videogame->restore();
+
+        return to_route('admin.videogames.trash')->with('alert-message', "Videogame '$videogame->title' restored successfully")->with('alert-type', 'success');
     }
 }
