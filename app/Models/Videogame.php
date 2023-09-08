@@ -11,7 +11,7 @@ class Videogame extends Model
     use HasFactory;
 
     use SoftDeletes;
-  
+
     protected $fillable = [
         'title',
         'cover',
@@ -22,6 +22,11 @@ class Videogame extends Model
         'description',
         'age_rating',
         'vote',
+        'publisher_id'
     ];
 
+    public function publisher()
+    {
+        return $this->belongsTo(Videogame::class);
+    }
 }
