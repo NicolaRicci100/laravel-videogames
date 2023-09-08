@@ -29,7 +29,14 @@
                         <td>{{ $videogame->genre }}</td>
                         <td>{{ $videogame->release_date }}</td>
                         <td>{{ $videogame->price }}</td>
-                        <td>{{ $videogame->platform }}</td>
+                        <td>
+                            @forelse ($videogame->platforms as $platform)
+                                <span
+                                    class="badge rounded-pill text-bg-{{ $platform->color }}">{{ $platform->name }}</span><br>
+                            @empty
+                                -
+                            @endforelse
+                        </td>
                         <td>{{ $videogame->created_at }}</td>
                         <td>{{ $videogame->updated_at }}</td>
                         <td class="vert">
