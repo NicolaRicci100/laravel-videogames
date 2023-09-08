@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="mx-5">
         @include('includes.alert')
         <div class="buttons d-flex justify-content-end">
             <a href="{{ route('admin.videogames.create') }}" class="btn btn-success me-2 my-4 text-end">Create new
@@ -15,6 +15,7 @@
                     <th scope="col">Genre</th>
                     <th scope="col">Release Date</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Publisher</th>
                     <th scope="col">Platforms</th>
                     <th scope="col">Created at</th>
                     <th scope="col">Last Update</th>
@@ -29,6 +30,13 @@
                         <td>{{ $videogame->genre }}</td>
                         <td>{{ $videogame->release_date }}</td>
                         <td>{{ $videogame->price }}</td>
+                        <td>{{ $videogame->platform }}</td>
+                        <td>
+                            @if ($videogame->publisher)
+                                {{ $videogame->publisher->label }}
+                            @else
+                                -
+                            @endif
                         <td>
                             @forelse ($videogame->platforms as $platform)
                                 <span

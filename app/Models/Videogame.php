@@ -22,10 +22,17 @@ class Videogame extends Model
         'description',
         'age_rating',
         'vote',
+        'publisher_id'
     ];
+
+
+    public function publisher()
+    {
+        return $this->belongsTo(Publisher::class);
 
     public function platforms()
     {
         return $this->belongsToMany(Platform::class);
+
     }
 }
