@@ -53,12 +53,6 @@
                         <input type="number" step="0.01" class="form-control border border-dark" id="price"
                             name="price" value="{{ old('price') }}">
                     </div>
-                    {{-- PLATFORM --}}
-                    <div class="mb-3">
-                        <label for="platform" class="form-label">Platform</label>
-                        <input type="text" class="form-control border border-dark" id="platform" name="platform"
-                            value="{{ old('platform') }}">
-                    </div>
                     {{-- DESCRIPTION --}}
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
@@ -81,6 +75,21 @@
                         <label for="vote" class="form-label">Vote</label>
                         <input type="number" class="form-control border border-dark" id="vote" name="vote"
                             value="{{ old('vote') }}">
+                    </div>
+                    {{-- PLATFORMS --}}
+                    <div class="mb-3">
+                        <label class="form-label">Platforms</label>
+                        <div>
+                            @foreach ($platforms as $platform)
+                                <div class="form-check form-check-inline">
+                                    <input @if (in_array($platform->id, old('platform', $videogame_platform_ids ?? []))) checked @endif class="form-check-input"
+                                        type="checkbox" id="tech-{{ $platform->id }}" value="{{ $platform->id }}"
+                                        name="platforms[]">
+                                    <label class="form-check-label"
+                                        for="tech-{{ $platform->id }}">{{ $platform->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     {{-- FORM ACTIONS --}}
                     <div class="d-flex justify-content-end pt-2">
