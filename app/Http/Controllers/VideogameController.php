@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Platform;
 use App\Models\Videogame;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class VideogameController extends Controller
 {
@@ -71,6 +72,9 @@ class VideogameController extends Controller
         $data = $request->all();
 
         $videogame->update($data);
+
+        if (!Arr::exists($data, 'platforms') && count($videogame->platforms)) $videogame->platforms()->detach();
+        elseif (Arr::exists($data, 'platforms')) $videogame->platforms()->sync($data['platforms']);
 
         return redirect()->route('admin.videogames.show', $videogame->id);
     }
