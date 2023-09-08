@@ -15,7 +15,7 @@
                     <th scope="col">Genre</th>
                     <th scope="col">Release Date</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Platform</th>
+                    <th scope="col">Platforms</th>
                     <th scope="col">Created at</th>
                     <th scope="col">Last Update</th>
                     <th scope="col"></th>
