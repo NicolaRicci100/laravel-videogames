@@ -3,6 +3,8 @@
     <div class="container">
         @include('includes.alert')
         <div class="buttons d-flex justify-content-end">
+            <a href="{{ route('admin.videogames.create') }}" class="btn btn-success me-2 my-4 text-end">Create new
+                videogame</a>
             <a href="{{ route('admin.videogames.trash') }}" class="btn btn-secondary my-4 text-end">Go to the trash</a>
         </div>
         <table id="projects-table" class="table table-dark table-striped">
