@@ -15,7 +15,14 @@
                             <p class="card-text">{{ $videogame->description }}</p>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <p><strong>Platform: </strong>{{ $videogame->platform }}</p>
+                            <p><strong>Platforms:</strong>
+                                @forelse ($videogame->platforms as $platform)
+                                    <span
+                                        class="badge rounded-pill text-bg-{{ $platform->color }}">{{ $platform->name }}</span>
+                                @empty
+                                    -
+                                @endforelse
+                            </p>
                             <p class="mx-4"><strong>Vote: </strong>{{ $videogame->vote }}</p>
                             <p><strong>Min age: </strong>{{ $videogame->age_rating }}</p>
                         </div>
