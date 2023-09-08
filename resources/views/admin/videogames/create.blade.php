@@ -53,12 +53,6 @@
                         <input type="number" step="0.01" class="form-control border border-dark" id="price"
                             name="price" value="{{ old('price') }}">
                     </div>
-                    {{-- PLATFORM --}}
-                    <div class="mb-3">
-                        <label for="platform" class="form-label">Platform</label>
-                        <input type="text" class="form-control border border-dark" id="platform" name="platform"
-                            value="{{ old('platform') }}">
-                    </div>
                     {{-- DESCRIPTION --}}
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
@@ -99,8 +93,7 @@
                     </div>
                     {{-- FORM ACTIONS --}}
                     <div class="d-flex justify-content-end pt-2">
-                        <button type="reset" class="btn btn-secondary"><i
-                                class="bi bi-arrow-clockwise"></i>Reset</button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i>Reset</button>
                         <button type="submit" class="btn btn-success ms-2"><i class="bi bi-plus-lg"></i>Create</button>
                     </div>
 
