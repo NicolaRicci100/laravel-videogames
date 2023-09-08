@@ -15,11 +15,12 @@
                     <th scope="col">Genre</th>
                     <th scope="col">Release Date</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Publisher</th>
                     <th scope="col">Platforms</th>
+                    <th scope="col">Publisher</th>
                     <th scope="col">Created at</th>
                     <th scope="col">Last Update</th>
                     <th scope="col"></th>
+
                 </tr>
             </thead>
             <tbody>
@@ -30,13 +31,6 @@
                         <td>{{ $videogame->genre }}</td>
                         <td>{{ $videogame->release_date }}</td>
                         <td>{{ $videogame->price }}</td>
-                        <td>{{ $videogame->platform }}</td>
-                        <td>
-                            @if ($videogame->publisher)
-                                {{ $videogame->publisher->label }}
-                            @else
-                                -
-                            @endif
                         <td>
                             @forelse ($videogame->platforms as $platform)
                                 <span
@@ -44,6 +38,13 @@
                             @empty
                                 -
                             @endforelse
+                        </td>
+                        <td>
+                            @if ($videogame->publisher)
+                                {{ $videogame->publisher->label }}
+                            @else
+                                -
+                            @endif
                         </td>
                         <td>{{ $videogame->created_at }}</td>
                         <td>{{ $videogame->updated_at }}</td>
