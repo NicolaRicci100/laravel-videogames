@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Publisher;
 use App\Models\Videogame;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,9 @@ class VideogameController extends Controller
      */
     public function create()
     {
-        return view('admin.videogames.create');
+        $videogame = new Videogame();
+        $publishers = Publisher::select('id', 'label')->get();
+        return view('admin.videogames.create', compact('videogame', 'publishers'));
     }
 
     /**
@@ -50,8 +53,10 @@ class VideogameController extends Controller
      */
     public function edit(Videogame $videogame)
     {
-        return view('admin.videogames.edit', compact('videogame'));
+        $publishers = Publisher::select('id', 'label')->get();
+        return view('admin.videogames.edit', compact('videogame', 'publishers'));
     }
+
 
     /**
      * Update the specified resource in storage.

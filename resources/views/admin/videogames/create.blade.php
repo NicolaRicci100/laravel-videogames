@@ -43,6 +43,18 @@
                         <input type="date" class="form-control border border-dark" id="release_date" name="release_date"
                             value="{{ old('release_date') }}">
                     </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="publisher" class="form-label">Publisher</label>
+                            <select name="publisher_id" id="publisher" class="form-select">
+                                <option value="">None</option>
+                                @foreach ($publishers as $publisher)
+                                    <option @if (old('publisher_id', $videogame->publisher_id) == $publisher->id) selected @endif value="{{ $publisher->id }}">
+                                        {{ $publisher->label }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-6 border-start border-dark">
@@ -84,10 +96,10 @@
                     </div>
                     {{-- FORM ACTIONS --}}
                     <div class="d-flex justify-content-end pt-2">
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i>Reset</button>
+                        <button type="reset" class="btn btn-secondary"><i
+                                class="bi bi-arrow-clockwise"></i>Reset</button>
                         <button type="submit" class="btn btn-success ms-2"><i class="bi bi-plus-lg"></i>Create</button>
                     </div>
-
                 </div>
             </div>
 

@@ -9,7 +9,7 @@ class Publisher extends Model
 {
     use HasFactory;
 
-    public function publishers()
+    public function videogames()
     {
         return $this->hasMany(Videogame::class);
     }
