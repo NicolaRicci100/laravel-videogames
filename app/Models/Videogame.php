@@ -29,10 +29,9 @@ class Videogame extends Model
     public function publisher()
     {
         return $this->belongsTo(Publisher::class);
-
+    }
     public function platforms()
     {
         return $this->belongsToMany(Platform::class);
-
     }
 }
