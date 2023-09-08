@@ -3,6 +3,8 @@
     <div class="mx-5">
         @include('includes.alert')
         <div class="buttons d-flex justify-content-end">
+            <a href="{{ route('admin.videogames.create') }}" class="btn btn-success me-2 my-4 text-end">Create new
+                videogame</a>
             <a href="{{ route('admin.videogames.trash') }}" class="btn btn-secondary my-4 text-end">Go to the trash</a>
         </div>
         <table id="projects-table" class="table table-dark table-striped">
@@ -13,8 +15,8 @@
                     <th scope="col">Genre</th>
                     <th scope="col">Release Date</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Platform</th>
                     <th scope="col">Publisher</th>
+                    <th scope="col">Platforms</th>
                     <th scope="col">Created at</th>
                     <th scope="col">Last Update</th>
                     <th scope="col"></th>
@@ -35,6 +37,13 @@
                             @else
                                 -
                             @endif
+                        <td>
+                            @forelse ($videogame->platforms as $platform)
+                                <span
+                                    class="badge rounded-pill text-bg-{{ $platform->color }}">{{ $platform->name }}</span><br>
+                            @empty
+                                -
+                            @endforelse
                         </td>
                         <td>{{ $videogame->created_at }}</td>
                         <td>{{ $videogame->updated_at }}</td>

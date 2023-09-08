@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Publisher;
+use App\Models\Platform;
 use App\Models\Videogame;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class VideogameController extends Controller
 {
@@ -24,7 +27,8 @@ class VideogameController extends Controller
     {
         $videogame = new Videogame();
         $publishers = Publisher::select('id', 'label')->get();
-        return view('admin.videogames.create', compact('videogame', 'publishers'));
+        $platforms = Platform::select('id', 'name')->get();
+        return view('admin.videogames.create', compact('videogame', 'publishers', 'platforms'));
     }
 
     /**
@@ -36,6 +40,8 @@ class VideogameController extends Controller
         $videogame = new Videogame();
         $videogame->fill($data);
         $videogame->save();
+
+        if (array_key_exists('platforms', $data)) $videogame->platforms()->attach($data['platforms']);
 
         return to_route('admin.videogames.show', $videogame);
     }
@@ -54,7 +60,12 @@ class VideogameController extends Controller
     public function edit(Videogame $videogame)
     {
         $publishers = Publisher::select('id', 'label')->get();
-        return view('admin.videogames.edit', compact('videogame', 'publishers'));
+      
+        $platforms = Platform::select('id', 'name')->get();
+
+        $videogame_platform_ids = $videogame->platforms->pluck('id')->toArray();
+        return view('admin.videogames.edit', compact('videogame', 'publishers', 'platforms', 'videogame_platform_ids'));
+
     }
 
 
@@ -66,6 +77,9 @@ class VideogameController extends Controller
         $data = $request->all();
 
         $videogame->update($data);
+
+        if (!Arr::exists($data, 'platforms') && count($videogame->platforms)) $videogame->platforms()->detach();
+        elseif (Arr::exists($data, 'platforms')) $videogame->platforms()->sync($data['platforms']);
 
         return redirect()->route('admin.videogames.show', $videogame->id);
     }
@@ -87,6 +101,9 @@ class VideogameController extends Controller
     public function drop(string $id)
     {
         $videogame = Videogame::onlyTrashed()->findOrFail($id);
+
+        if (count($videogame->platforms)) $videogame->platforms()->detach();
+
         $videogame->forceDelete();
         return to_route('admin.videogames.trash')->with('alert-message', "Videogame '$videogame->title' deleted successfully")->with('alert-type', 'success');
     }

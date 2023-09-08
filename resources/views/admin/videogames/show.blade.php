@@ -21,6 +21,12 @@
                 <span><strong>Vote:</strong> {{ $videogame->vote }}</span>
                 <span><strong>Genre:</strong> {{ $videogame->genre }}</span>
                 <span><strong>Price:</strong> {{ $videogame->price }}</span>
+                <span><strong>Platforms:</strong> @forelse ($videogame->platforms as $platform)
+                        <span class="badge rounded-pill text-bg-{{ $platform->color }}">{{ $platform->name }}</span>
+                    @empty
+                        -
+                    @endforelse
+                </span>
             </div>
         </div>
         <hr>
