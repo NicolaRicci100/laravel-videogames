@@ -93,7 +93,7 @@ class VideogameController extends Controller
     {
         $videogame = Videogame::onlyTrashed()->findOrFail($id);
 
-        if (count($videogame->platform)) $videogame->platform()->detach();
+        if (count($videogame->platforms)) $videogame->platforms()->detach();
 
         $videogame->forceDelete();
         return to_route('admin.videogames.trash')->with('alert-message', "Videogame '$videogame->title' deleted successfully")->with('alert-type', 'success');
