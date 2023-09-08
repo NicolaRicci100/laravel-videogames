@@ -44,6 +44,7 @@
                         <input type="date" class="form-control border border-dark" id="release_date" name="release_date"
                             value="{{ old('release_date', $videogame->release_date) }}">
                     </div>
+                    {{-- PUBLISHER --}}
                     <div class="col-4">
                         <div class="mb-3">
                             <label for="publisher" class="form-label">Publisher</label>
