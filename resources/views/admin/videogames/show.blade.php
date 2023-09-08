@@ -19,6 +19,12 @@
                 <h4>Vote: <span class="text-primary">{{ $videogame->vote }}</span></h4>
                 <h4>Gender: <span class="text-primary">{{ $videogame->genre }}</span></h4>
                 <h4>Price: <span class="text-primary">{{ $videogame->price }}</span></h4>
+                <h4>Platforms: @forelse ($videogame->platforms as $platform)
+                        <span class="badge rounded-pill text-bg-{{ $platform->color }}">{{ $platform->name }}</span>
+                    @empty
+                        -
+                    @endforelse
+                </h4>
                 <h4>Description:</h4>
                 <p class="col-7 text-primary">{{ $videogame->description }}</p>
 
