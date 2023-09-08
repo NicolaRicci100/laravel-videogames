@@ -95,11 +95,6 @@
                                         for="tech-{{ $platform->id }}">{{ $platform->name }}</label>
                                 </div>
                             @endforeach
-                            @error('platforms')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
                     </div>
                     {{-- FORM ACTIONS --}}

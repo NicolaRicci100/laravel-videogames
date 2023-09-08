@@ -89,9 +89,25 @@
                         <input type="number" class="form-control border border-dark" id="vote" name="vote"
                             value="{{ old('vote', $videogame->vote) }}">
                     </div>
+                    {{-- PLATFORMS --}}
+                    <div class="mb-3">
+                        <label class="form-label">Platforms</label>
+                        <div>
+                            @foreach ($platforms as $platform)
+                                <div class="form-check form-check-inline">
+                                    <input @if (in_array($platform->id, old('platform', $videogame_platform_ids ?? []))) checked @endif class="form-check-input"
+                                        type="checkbox" id="tech-{{ $platform->id }}" value="{{ $platform->id }}"
+                                        name="platforms[]">
+                                    <label class="form-check-label"
+                                        for="tech-{{ $platform->id }}">{{ $platform->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                     {{-- FORM ACTIONS --}}
                     <div class="d-flex justify-content-end pt-2">
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i>Reset</button>
+                        <button type="reset" class="btn btn-secondary"><i
+                                class="bi bi-arrow-clockwise"></i>Reset</button>
                         <button type="submit" class="btn btn-success ms-2"><i class="bi bi-plus-lg"></i>Update</button>
                     </div>
 
